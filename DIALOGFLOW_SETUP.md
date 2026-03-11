@@ -1,4 +1,4 @@
-## Dialogflow terminal chat (DetectIntent)
+## Dialogflow terminal chat (DetectIntent_)
 
 This backend repo includes a small CLI that lets you chat with **Dialogflow ES** from your terminal:
 
