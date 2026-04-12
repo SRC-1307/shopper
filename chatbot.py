@@ -56,10 +56,10 @@ def track_order(order_parameters: dict):
         print("NO DATA FOUND")
 
     if order_status:
-        response_text = (f"Thank you for ordering from shopper. Your order with order id: {int(order_id)} of "
+        response_text = (f"Thank you for ordering from shopper. Your order with Order ID: {int(order_id)} of "
                          f"total price: {order_price[0]}$ is in {order_status[0]} status")
     else:
-        response_text = (f"Dear customer,We regret to inform you that no order was found with Order id {int(order_id)} "
+        response_text = (f"Dear customer,We regret to inform you that no order was found with Order ID {int(order_id)} "
                          f"please say new order to a place an order")
 
     return response_text
