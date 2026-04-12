@@ -11,8 +11,13 @@ PASSWORD = os.environ.get("DB_PASSWORD", "password")
 HOST     = os.environ.get("DB_HOST", "127.0.0.1")
 PORT     = os.environ.get("DB_PORT", "3306")
 DB_NAME  = os.environ.get("DB_NAME", "shopper-DB")
+SOCKET   = os.environ.get("DB_SOCKET", "")
 
-DB_URL = f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
+# Use socket if provided (Cloud Run), else TCP (local)
+if SOCKET:
+    DB_URL = f"mysql+pymysql://{USER}:{PASSWORD}@/{DB_NAME}?unix_socket={SOCKET}"
+else:
+    DB_URL = f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 
 db_engine = create_engine(DB_URL)
 

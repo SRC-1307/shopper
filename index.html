@@ -183,7 +183,6 @@
       <div id="chat-header">
         <div>
           <div class="title">Shopper</div>
-          <div class="subtitle">Speak — hear it back</div>
         </div>
         <button id="closeBtn" title="Close">&#x2715;</button>
       </div>
@@ -217,7 +216,7 @@
   </div>
 
   <script>
-    const BACKEND_URL = "http://localhost:8000";
+    const BACKEND_URL = window.BACKEND_URL || "http://localhost:8080";
 
     let mediaRecorder = null;
     let audioChunks = [];
@@ -349,7 +348,7 @@
         const transcript = resp.headers.get("X-Transcript");
         const botReply   = resp.headers.get("X-Bot-Response");
 
-        if (transcript) addMsg(`You: "${transcript}"`, "user");
+        if (transcript) addMsg(transcript, "user");
 
         const audioBuffer = await resp.arrayBuffer();
         const audioBlob   = new Blob([audioBuffer], { type: "audio/mpeg" });

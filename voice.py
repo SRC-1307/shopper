@@ -1,3 +1,10 @@
+# ── Standalone dev tool ───────────────────────────────────────────────────────
+# This is a self-contained STT + TTS echo server used during development to
+# test the Google Speech-to-Text and Text-to-Speech pipeline in isolation,
+# without Dialogflow or the database. It is NOT part of the main application.
+# Run independently with: uvicorn voice:app --reload
+# ─────────────────────────────────────────────────────────────────────────────
+
 import os
 
 from dotenv import load_dotenv

@@ -35,16 +35,18 @@ DIALOGFLOW_PROJECT_ID = os.environ.get("DIALOGFLOW_PROJECT_ID")
 
 # ── Google credentials ────────────────────────────────────────────────────────
 
-def get_credentials() -> service_account.Credentials:
+def get_credentials():
     creds_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-    if not creds_path:
-        raise RuntimeError(
-            "GOOGLE_APPLICATION_CREDENTIALS env var not set. "
-            "Export the path to your service account JSON file."
+    if creds_path:
+        # Local development — use JSON key file
+        return service_account.Credentials.from_service_account_file(
+            creds_path, scopes=GOOGLE_SCOPES
         )
-    return service_account.Credentials.from_service_account_file(
-        creds_path, scopes=GOOGLE_SCOPES
-    )
+    else:
+        # Cloud Run — use attached service account automatically
+        import google.auth
+        creds, _ = google.auth.default(scopes=GOOGLE_SCOPES)
+        return creds
 
 
 # ── DB dependency ─────────────────────────────────────────────────────────────

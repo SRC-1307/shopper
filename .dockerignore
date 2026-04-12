@@ -1,0 +1,22 @@
+# Secrets
+.env
+*-key.json
+*-credentials.json
+service-account*.json
+
+# Git
+.git
+.gitignore
+
+# Dev tools
+voice.py
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# Docs
+README.md
